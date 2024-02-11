@@ -26,58 +26,27 @@ int main() {
 	for (int index = 0; index < K; index++) {
 		int num, clockwise;
 		cin >> num >> clockwise;
-		switch (num) {
-		case 1:
-			if (chain[1][2] != chain[2][6]) {
-				pre_chain[2] = chain[2];
-				chain[2] = rotate(-1 * clockwise, chain[2]);
-				if (pre_chain[2][2] != chain[3][6]) {
-					pre_chain[3] = chain[3];
-					chain[3] = rotate(clockwise, chain[3]);
-					if (pre_chain[3][2] != chain[4][6]) {
-						chain[4] = rotate(-1 * clockwise, chain[4]);
-					}
-				}
+
+		int pre_clockwise = clockwise;
+		pre_chain[num] = chain[num];
+		for (int i = num - 1; i >= 1; i--) {
+			pre_chain[i] = chain[i];
+			if (chain[i][2] != pre_chain[i + 1][6]) {
+				pre_clockwise *= -1;
+				chain[i] = rotate(pre_clockwise, chain[i]);
 			}
-			chain[1] = rotate(clockwise, chain[1]);
-			break;
-		case 2:
-			if (chain[2][6] != chain[1][2]) chain[1] = rotate(-1 * clockwise, chain[1]);
-			if (chain[2][2] != chain[3][6]) {
-				pre_chain[3] = chain[3];
-				chain[3] = rotate(-1 * clockwise, chain[3]);
-				if (pre_chain[3][2] != chain[4][6]) {
-					chain[4] = rotate(clockwise, chain[4]);
-				}
-			}
-			chain[2] = rotate(clockwise, chain[2]);
-			break;
-		case 3:
-			if (chain[3][2] != chain[4][6]) chain[4] = rotate(-1 * clockwise, chain[4]);
-			if (chain[3][6] != chain[2][2]) {
-				pre_chain[2] = chain[2];
-				chain[2] = rotate(-1 * clockwise, chain[2]);
-				if (pre_chain[2][6] != chain[1][2]) {
-					chain[1] = rotate(clockwise, chain[1]);
-				}
-			}
-			chain[3] = rotate(clockwise, chain[3]);
-			break;
-		case 4:
-			if (chain[4][6] != chain[3][2]) {
-				pre_chain[3] = chain[3];
-				chain[3] = rotate(-1 * clockwise, chain[3]);
-				if (pre_chain[3][6] != chain[2][2]) {
-					pre_chain[2] = chain[2];
-					chain[2] = rotate(clockwise, chain[2]);
-					if (pre_chain[2][6] != chain[1][2]) {
-						chain[1] = rotate(-1 * clockwise, chain[1]);
-					}
-				}
-			}
-			chain[4] = rotate(clockwise, chain[4]);
-			break;
+			else break;
 		}
+		pre_clockwise = clockwise;
+		for (int i = num + 1; i <= 4; i++) {
+			pre_chain[i] = chain[i];
+			if (chain[i][6] != pre_chain[i - 1][2]) {
+				pre_clockwise *= -1;
+				chain[i] = rotate(pre_clockwise, chain[i]);
+			}
+			else break;
+		}
+		chain[num] = rotate(clockwise, chain[num]);
 	}
 	cout << (chain[1][0] - '0') + 2 * (chain[2][0] - '0') + 4 * (chain[3][0] - '0') + 8 * (chain[4][0] - '0');
 	return 0;
