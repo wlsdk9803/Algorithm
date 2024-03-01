@@ -6,9 +6,8 @@ using namespace std;
 vector<int> parent;
 
 int find(int x) {
-	int p_x = parent[x];
-	if (p_x == x) return x;
-	return parent[x] = find(p_x);
+	if (parent[x] == x) return x;
+	return parent[x] = find(parent[x]);
 }
 
 void merge(int a, int b) {
