@@ -11,9 +11,24 @@ int main() {
 		if (S[i] == '0') count0++;
 		else count1++;
 	}
-	string res = "";
-	for (int i = 0; i < count0 / 2; i++) res += '0';
-	for (int i = 0; i < count1 / 2; i++) res += '1';
-	cout << res;
+	int count = 0;
+	for (int i = 0; i < S.length(); i++) {
+		if (S[i] == '1') {
+			S.erase(i, 1);
+			i--;
+			count++;
+		}
+		if (count == count1 / 2) break;
+	}
+	count = 0;
+	for (int i = S.length() - 1; i >= 0; i--) {
+		if (S[i] == '0') {
+			S.erase(i, 1);
+			i++;
+			count++;
+		}
+		if (count == count0 / 2) break;
+	}
+	cout << S;
 	return 0;
 }
