@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <string>
 
 using namespace std;
@@ -10,7 +9,6 @@ int isValid(int row, int col) {
 
 int main() {
 	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-	vector<vector<int>> v(8, vector<int>(8));
 	string king, stone; cin >> king >> stone;
 	pair<int, int> k_pos = make_pair(8 - (king[1] - '0'), king[0] - 'A');
 	pair<int, int> s_pos = make_pair(8 - (stone[1] - '0'), stone[0] - 'A');
