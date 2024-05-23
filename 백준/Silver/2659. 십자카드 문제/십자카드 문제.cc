@@ -7,9 +7,9 @@
 using namespace std;
 
 int get_clock_num(string snum) {
-	vector<string> v;
+	vector<string> v(4);
 	for (int i = 0; i < 4; i++) {
-		v.push_back(snum.substr(i, 1) + snum.substr((i + 1) % 4, 1) + snum.substr((i + 2) % 4, 1) + snum.substr((i + 3) % 4, 1));
+		v[i] = snum.substr(i) + snum.substr(0, i);
 	}
 	sort(v.begin(), v.end());
 	return stoi(v[0]);
