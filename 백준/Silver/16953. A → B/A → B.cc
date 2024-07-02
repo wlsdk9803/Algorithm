@@ -8,7 +8,6 @@ using namespace std;
 
 int main() {
 	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-	const int max_int = pow(10, 9);
 	long long a, b; cin >> a >> b;
 	queue<long long> q;
 	unordered_map<long long, int> um;
@@ -26,7 +25,7 @@ int main() {
 			if (i == 0) next_num = cur_num * 2;
 			else if (i == 1) next_num = cur_num * 10 + 1;
 
-			if (next_num > max_int) continue;
+			if (next_num > b) continue;
 			else {
 				if (um.find(next_num) == um.end()) um.insert({ next_num, um[cur_num] + 1 });
 				else um[next_num] = min(um[next_num], um[cur_num] + 1);
