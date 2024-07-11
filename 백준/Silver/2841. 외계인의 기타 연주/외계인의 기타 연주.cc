@@ -12,11 +12,6 @@ int main() {
     for (int i = 0; i < n; i++) {
         int string_num, fret_num;
         cin >> string_num >> fret_num;
-        if (v[string_num].empty() || fret_num > v[string_num].top()) {
-            v[string_num].push(fret_num);
-            res++;
-            continue;
-        }
         if (!v[string_num].empty() && fret_num == v[string_num].top()) continue;
         while (!v[string_num].empty() && fret_num < v[string_num].top()) {
             v[string_num].pop();
