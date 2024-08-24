@@ -16,11 +16,10 @@ int main() {
 	vector<pair<int, int>> res;
 	res.push_back(v[0]);
 	for (int i = 1; i < N; i++) {
-		int res_front = res.back().first;
 		int res_back = res.back().second;
 		int a = v[i].first;
 		int b = v[i].second;
-		if (a == res_front || (a <= res_back && b > res_back)) res[res.size() - 1].second = b;
+		if (a <= res_back && b > res_back) res[res.size() - 1].second = b;
 		else if (a > res_back) res.push_back({ a, b });
 	}
 	int total_length = 0;
