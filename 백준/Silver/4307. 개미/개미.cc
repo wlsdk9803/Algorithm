@@ -9,19 +9,14 @@ int main() {
 	int T; cin >> T;
 	for (int test = 0; test < T; test++) {
 		int len, n; cin >> len >> n;
-		vector<int> min_v(n);
-		vector<int> max_v(n);
+		int min_time = 0, max_time = 0;
 		for (int i = 0; i < n; i++) {
 			int num; cin >> num;
 			int reverse_num = len - num;
-			int min_num = min(num, reverse_num);
-			int max_num = max(num, reverse_num);
-			min_v[i] = min_num;
-			max_v[i] = max_num;
+			min_time = max(min_time, min(num, reverse_num));
+			max_time = max(max_time, max(num, reverse_num));
 		}
-		sort(min_v.begin(), min_v.end());
-		sort(max_v.begin(), max_v.end());
-		cout << min_v[n - 1] << " " << max_v[n - 1] << "\n";
+		cout << min_time << " " << max_time << "\n";
 	}
 	return 0;
 }
